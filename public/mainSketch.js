@@ -173,7 +173,10 @@ window.handleReleased = function() {
 }
 
 function sendScore(score, name) {
-    console.log("enter rt");
+    fetch("/addScore", {
+        method: "POST",
+        body: name + " " + score
+    });
 }
 
 
