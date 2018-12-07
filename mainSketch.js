@@ -25,6 +25,7 @@ var framesBeforeSpawn = 1;
 
 var cactusSkin;
 var vautourSkin;
+var snakeSkin;
 
 
 
@@ -38,6 +39,17 @@ window.setup = function() {
         "day": [loadImage(day + 'vautour.png')],
         "night": [loadImage(night + 'vautour.png')]
     };
+
+    cactusSkin = {
+        "day": [loadImage(day + 'cactus.png')],
+        "night": [loadImage(night + 'cactus.png')]
+    };
+    snakeSkin = {
+        "day": [loadImage(day + 'snake3.png')],
+        "night": [loadImage(night + 'snake3.png')]
+    };
+
+
     scaleX = 1.0;
     scaleY = 1.0;
     createCanvas(baseWidth * scaleX, baseHeight * scaleY);
@@ -100,11 +112,11 @@ window.generateEnemy = function() {
     var enemyType = floor(Math.random() * 4);
     switch (enemyType) {
         case (ENEMY_TYPES.CACTUS):
-            enemies.push(new BasicEnemy(baseWidth, baseHeight - groundHeight - 64, -basicSpeed, 0, 32, 64));
+            enemies.push(new BasicEnemy(baseWidth, baseHeight - groundHeight - 64, -basicSpeed, 0, 32, 64, cactusSkin));
             console.log("cactus spawned");
             break;
         case (ENEMY_TYPES.SNAKE):
-            enemies.push(new BasicEnemy(baseWidth, baseHeight - groundHeight - 64, -basicSpeed, 0, 32, 64));
+            enemies.push(new BasicEnemy(baseWidth, baseHeight - groundHeight - 64, -basicSpeed, 0, 32, 64, snakeSkin));
 
             break;
         case (ENEMY_TYPES.TORNADO):
