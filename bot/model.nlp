@@ -1,0 +1,625 @@
+{
+  "settings": {
+    "languages": [
+      "en"
+    ],
+    "fullSearchWhenGuessed": false,
+    "useNlg": true,
+    "useNeural": true,
+    "useLRC": true
+  },
+  "languages": [
+    "en"
+  ],
+  "intentDomains": {
+    "agent.name": "default",
+    "agent.insult": "default",
+    "agent.creator": "default"
+  },
+  "nerManager": {
+    "settings": {},
+    "threshold": 0.8,
+    "builtins": [
+      "Number",
+      "Ordinal",
+      "Percentage",
+      "Age",
+      "Currency",
+      "Dimension",
+      "Temperature",
+      "DateTime",
+      "PhoneNumber",
+      "IpAddress",
+      "Boolean",
+      "Email",
+      "Hashtag",
+      "URL"
+    ],
+    "namedEntities": {}
+  },
+  "slotManager": {},
+  "classifiers": [
+    {
+      "language": "en",
+      "docs": [
+        {
+          "intent": "agent.name",
+          "utterance": [
+            "your",
+            "name"
+          ]
+        },
+        {
+          "intent": "agent.name",
+          "utterance": [
+            "who",
+            "are",
+            "you"
+          ]
+        },
+        {
+          "intent": "agent.name",
+          "utterance": [
+            "what",
+            "is",
+            "your",
+            "name"
+          ]
+        },
+        {
+          "intent": "agent.name",
+          "utterance": [
+            "tell",
+            "me",
+            "your",
+            "name"
+          ]
+        },
+        {
+          "intent": "agent.insult",
+          "utterance": [
+            "you",
+            "are",
+            "bad"
+          ]
+        },
+        {
+          "intent": "agent.insult",
+          "utterance": [
+            "you",
+            "are",
+            "horribl"
+          ]
+        },
+        {
+          "intent": "agent.insult",
+          "utterance": [
+            "you",
+            "are",
+            "useless"
+          ]
+        },
+        {
+          "intent": "agent.insult",
+          "utterance": [
+            "you",
+            "are",
+            "the",
+            "worst"
+          ]
+        },
+        {
+          "intent": "agent.insult",
+          "utterance": [
+            "i",
+            "hate",
+            "you"
+          ]
+        },
+        {
+          "intent": "agent.creator",
+          "utterance": [
+            "who",
+            "is",
+            "your",
+            "master"
+          ]
+        },
+        {
+          "intent": "agent.creator",
+          "utterance": [
+            "who",
+            "do",
+            "you",
+            "work",
+            "for"
+          ]
+        },
+        {
+          "intent": "agent.creator",
+          "utterance": [
+            "who",
+            "is",
+            "your",
+            "creator"
+          ]
+        },
+        {
+          "intent": "agent.creator",
+          "utterance": [
+            "who",
+            "is",
+            "your",
+            "owner"
+          ]
+        },
+        {
+          "intent": "agent.creator",
+          "utterance": [
+            "who",
+            "is",
+            "the",
+            "creator"
+          ]
+        }
+      ],
+      "features": {
+        "your": 6,
+        "name": 3,
+        "who": 6,
+        "are": 5,
+        "you": 7,
+        "what": 1,
+        "is": 5,
+        "tell": 1,
+        "me": 1,
+        "bad": 1,
+        "horribl": 1,
+        "useless": 1,
+        "the": 2,
+        "worst": 1,
+        "i": 1,
+        "hate": 1,
+        "master": 1,
+        "do": 1,
+        "work": 1,
+        "for": 1,
+        "creator": 2,
+        "owner": 1
+      },
+      "logistic": {
+        "observations": {
+          "agent.name": [
+            [
+              1
+            ],
+            [
+              2,
+              3,
+              4
+            ],
+            [
+              1,
+              5,
+              6
+            ],
+            [
+              1,
+              7,
+              8
+            ]
+          ],
+          "agent.insult": [
+            [
+              3,
+              4,
+              9
+            ],
+            [
+              3,
+              4,
+              10
+            ],
+            [
+              3,
+              4,
+              11
+            ],
+            [
+              3,
+              4,
+              12,
+              13
+            ],
+            [
+              4,
+              14,
+              15
+            ]
+          ],
+          "agent.creator": [
+            [
+              2,
+              6,
+              16
+            ],
+            [
+              2,
+              4,
+              17,
+              18,
+              19
+            ],
+            [
+              2,
+              6,
+              20
+            ],
+            [
+              2,
+              6,
+              21
+            ],
+            [
+              2,
+              6,
+              12,
+              20
+            ]
+          ]
+        },
+        "labels": [
+          "agent.name",
+          "agent.insult",
+          "agent.creator"
+        ],
+        "observationCount": 14,
+        "theta": [
+          {
+            "elements": [
+              -0.04877049964842467,
+              6.076481857630325,
+              3.3879517387755,
+              1.78964604536362,
+              -1.0949605593934657,
+              3.075992290681589,
+              -3.6236513527154672,
+              0.8655223296511966,
+              0.8655223296511966,
+              -2.809686122048617,
+              -2.809686122048617,
+              -2.809686122048617,
+              -2.093442044353336,
+              -1.5190507582350266,
+              -1.234446817185142,
+              -1.234446817185142,
+              -2.1694447222225435,
+              -1.6501597875719431,
+              -1.6501597875719431,
+              -1.6501597875719431,
+              -2.3607541989519754,
+              -2.1694447222225435
+            ]
+          },
+          {
+            "elements": [
+              -2.247084447419455,
+              -1.710740354255798,
+              -5.453920050848464,
+              1.2336338921854335,
+              2.004949520316219,
+              -0.3446387132192276,
+              -1.2114234490007976,
+              -0.511704148797662,
+              -0.511704148797662,
+              1.3615744461649628,
+              1.3615744461649628,
+              1.3615744461649628,
+              0.7538773156658108,
+              1.0843179582837243,
+              1.4230435386045022,
+              1.4230435386045022,
+              -0.18265150040457692,
+              -0.6517279104737177,
+              -0.6517279104737177,
+              -0.6517279104737177,
+              -0.5014817349724158,
+              -0.18265150040457692
+            ]
+          },
+          {
+            "elements": [
+              -0.1330685170246182,
+              -2.8229475317596537,
+              3.174435500962789,
+              -2.9360882925965948,
+              -2.1045560700255725,
+              -1.3640200668848192,
+              1.9601009602743202,
+              -0.541913975065989,
+              -0.541913975065989,
+              -0.3179866883714503,
+              -0.3179866883714503,
+              -0.3179866883714503,
+              0.2943452648601221,
+              -0.33989674756398197,
+              -0.6610137311508876,
+              -0.6610137311508876,
+              0.9681731754078671,
+              1.4925459537219101,
+              1.4925459537219101,
+              1.4925459537219101,
+              1.3877746763434051,
+              0.9681731754078671
+            ]
+          }
+        ]
+      },
+      "useLRC": true,
+      "useNeural": true,
+      "neuralClassifier": {
+        "settings": {
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "learningRate": 0.1,
+            "errorThresh": 0.0005,
+            "timeout": 40000
+          }
+        },
+        "classifierMap": {
+          "agent.name": {
+            "sizes": [
+              22,
+              1
+            ],
+            "layers": [
+              {
+                "your": {},
+                "name": {},
+                "who": {},
+                "are": {},
+                "you": {},
+                "what": {},
+                "is": {},
+                "tell": {},
+                "me": {},
+                "bad": {},
+                "horribl": {},
+                "useless": {},
+                "the": {},
+                "worst": {},
+                "i": {},
+                "hate": {},
+                "master": {},
+                "do": {},
+                "work": {},
+                "for": {},
+                "creator": {},
+                "owner": {}
+              },
+              {
+                "0": {
+                  "bias": 6.5615973472595215,
+                  "weights": {
+                    "your": 6.591926097869873,
+                    "name": 85.61140441894531,
+                    "who": 54.7480354309082,
+                    "are": 29.293306350708008,
+                    "you": 2.1900386810302734,
+                    "what": 40.023502349853516,
+                    "is": -40.233741760253906,
+                    "tell": 0.9192681312561035,
+                    "me": 0.8573719263076782,
+                    "bad": -36.277156829833984,
+                    "horribl": -36.26970672607422,
+                    "useless": -36.25502395629883,
+                    "the": -19.484230041503906,
+                    "worst": -18.008638381958008,
+                    "i": -6.316848278045654,
+                    "hate": -6.427517890930176,
+                    "master": -26.725317001342773,
+                    "do": -20.69404411315918,
+                    "work": -20.837865829467773,
+                    "for": -20.85140037536621,
+                    "creator": -26.728181838989258,
+                    "owner": -26.705543518066406
+                  }
+                }
+              }
+            ],
+            "outputLookup": false,
+            "inputLookup": true,
+            "activation": "leaky-relu",
+            "trainOpts": {
+              "iterations": 20000,
+              "errorThresh": 0.0005,
+              "log": false,
+              "logPeriod": 10,
+              "learningRate": 0.1,
+              "momentum": 0.1,
+              "callbackPeriod": 10,
+              "timeout": 120000,
+              "beta1": 0.9,
+              "beta2": 0.999,
+              "epsilon": 1e-8
+            }
+          },
+          "agent.insult": {
+            "sizes": [
+              22,
+              1
+            ],
+            "layers": [
+              {
+                "your": {},
+                "name": {},
+                "who": {},
+                "are": {},
+                "you": {},
+                "what": {},
+                "is": {},
+                "tell": {},
+                "me": {},
+                "bad": {},
+                "horribl": {},
+                "useless": {},
+                "the": {},
+                "worst": {},
+                "i": {},
+                "hate": {},
+                "master": {},
+                "do": {},
+                "work": {},
+                "for": {},
+                "creator": {},
+                "owner": {}
+              },
+              {
+                "0": {
+                  "bias": 20.442808151245117,
+                  "weights": {
+                    "your": -10.885741233825684,
+                    "name": -9.439270973205566,
+                    "who": -68.40168762207031,
+                    "are": 20.053821563720703,
+                    "you": 35.24656295776367,
+                    "what": -1.5357506275177002,
+                    "is": -4.5293707847595215,
+                    "tell": -2.1546144485473633,
+                    "me": -2.3294873237609863,
+                    "bad": 21.9804630279541,
+                    "horribl": 21.997936248779297,
+                    "useless": 21.974550247192383,
+                    "the": 11.127041816711426,
+                    "worst": 12.821595191955566,
+                    "i": 22.064870834350586,
+                    "hate": 21.9982852935791,
+                    "master": -0.6325206160545349,
+                    "do": -6.660007953643799,
+                    "work": -6.582398891448975,
+                    "for": -6.898359775543213,
+                    "creator": -1.9514944553375244,
+                    "owner": -0.6286439299583435
+                  }
+                }
+              }
+            ],
+            "outputLookup": false,
+            "inputLookup": true,
+            "activation": "leaky-relu",
+            "trainOpts": {
+              "iterations": 20000,
+              "errorThresh": 0.0005,
+              "log": false,
+              "logPeriod": 10,
+              "learningRate": 0.1,
+              "momentum": 0.1,
+              "callbackPeriod": 10,
+              "timeout": 60000,
+              "beta1": 0.9,
+              "beta2": 0.999,
+              "epsilon": 1e-8
+            }
+          },
+          "agent.creator": {
+            "sizes": [
+              22,
+              1
+            ],
+            "layers": [
+              {
+                "your": {},
+                "name": {},
+                "who": {},
+                "are": {},
+                "you": {},
+                "what": {},
+                "is": {},
+                "tell": {},
+                "me": {},
+                "bad": {},
+                "horribl": {},
+                "useless": {},
+                "the": {},
+                "worst": {},
+                "i": {},
+                "hate": {},
+                "master": {},
+                "do": {},
+                "work": {},
+                "for": {},
+                "creator": {},
+                "owner": {}
+              },
+              {
+                "0": {
+                  "bias": 7.275866508483887,
+                  "weights": {
+                    "your": 9.894103050231934,
+                    "name": -24.329608917236328,
+                    "who": 40.152034759521484,
+                    "are": -29.347169876098633,
+                    "you": -11.70675277709961,
+                    "what": -17.03496742248535,
+                    "is": 26.94506072998047,
+                    "tell": -2.6752707958221436,
+                    "me": -2.887733221054077,
+                    "bad": -1.1767985820770264,
+                    "horribl": -0.974653422832489,
+                    "useless": -0.8426972031593323,
+                    "the": 8.206487655639648,
+                    "worst": -1.9865853786468506,
+                    "i": -2.5614240169525146,
+                    "hate": -2.3975493907928467,
+                    "master": 13.493769645690918,
+                    "do": 20.419132232666016,
+                    "work": 20.436664581298828,
+                    "for": 20.31047821044922,
+                    "creator": 16.827943801879883,
+                    "owner": 13.505403518676758
+                  }
+                }
+              }
+            ],
+            "outputLookup": false,
+            "inputLookup": true,
+            "activation": "leaky-relu",
+            "trainOpts": {
+              "iterations": 20000,
+              "errorThresh": 0.0005,
+              "log": false,
+              "logPeriod": 10,
+              "learningRate": 0.1,
+              "momentum": 0.1,
+              "callbackPeriod": 10,
+              "timeout": 40000,
+              "beta1": 0.9,
+              "beta2": 0.999,
+              "epsilon": 1e-8
+            }
+          }
+        }
+      }
+    }
+  ],
+  "responses": {
+    "en": {
+      "agent.name": [
+        {
+          "response": ""
+        }
+      ],
+      "agent.insult": [
+        {
+          "response": ""
+        }
+      ],
+      "agent.creator": [
+        {
+          "response": ""
+        }
+      ]
+    }
+  }
+}
