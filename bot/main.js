@@ -24,7 +24,8 @@ manager.addDocument('en', 'I hate you so much', 'agent.insult');
 manager.addDocument('en', 'are you stupid', 'agent.insultStupid');
 manager.addDocument('en', 'you are so stupid', 'agent.insultStupid');
 manager.addDocument('en', 'noob', 'agent.insultStupid');
-manager.addDocument('en', 'i am clever', 'agent.insultStupid');
+manager.addDocument('en', 'i am more clever than you', 'agent.insultStupid');
+manager.addDocument('en', 'i am smarter than you', 'agent.insultStupid');
 
 manager.addDocument('en', 'who is your master', 'agent.creator');
 manager.addDocument('en', 'who do you work for', 'agent.creator');
@@ -43,6 +44,12 @@ manager.addDocument('en', 'tell me more about the accident', 'nanachi.accident')
 manager.addDocument('en', 'what happened during the accident', 'nanachi.accident');
 manager.addDocument('en', 'how did nanachi die', 'nanachi.accident');
 manager.addDocument('en', 'how did she die', 'nanachi.accident');
+
+manager.addDocument('en', 'Tell me something about', 'command.wiki');
+manager.addDocument('en', 'What is', 'command.wiki');
+manager.addDocument('en', 'Can you search this on wikipedia?', 'command.wiki');
+manager.addDocument('en', 'How can I search something on Wikipedia?', 'command.wiki');
+
 // Train also the NLG
 manager.addAnswer('en', 'agent.name', 'I am the true Nanachi! The fake died in an accident.');
 
@@ -59,7 +66,7 @@ manager.addAnswer('en', 'agent.help', "Here is a friend of yours: https://www.go
 manager.addAnswer('en', 'agent.help', "Click on the red cross at the top left of your screen");
 manager.addAnswer('en', 'nanachi.accident', "She slipped in the abyss and has not returned yet. I told everyone that she died, but nobody believed me. Do you know what is worst? I am currently speaking to you...");
 
-
+manager.addDocument('en', 'command.wiki', "If you want me to search something on wikipedia, just type 'wiki X' where X is the thing you want to know about.");
 
 
 async function fetchResults(searchQuery) {
