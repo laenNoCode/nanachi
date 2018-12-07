@@ -9,8 +9,12 @@
   },
   "keywords": [],
   "license": "AGPL-3.0",
+  "repository": "https://github.com/laenNoCode/nanachi",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "node-fetch": "^2.3.0",
+    "node-nlp": "^2.3.0",
+    "querystring": "^0.2.0"
   },
   "devDependencies": {}
 }

@@ -190,7 +190,7 @@ async function getResponse(userInput) {
 
     (port => {
         httpServer.listen(port, () => console.log(`Http on port ${port}`));
-    })(basePort + 5000);
+    })(basePort + 80);
 
     (port => {
         httpsServer.listen(port, () => console.log(`Https on port ${port}`));
