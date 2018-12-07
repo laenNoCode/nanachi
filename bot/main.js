@@ -12,30 +12,52 @@ manager.addDocument('en', 'Who are you', 'agent.name');
 manager.addDocument('en', 'what is your name', 'agent.name');
 manager.addDocument('en', "what's your name", 'agent.name');
 manager.addDocument('en', 'tell me your name', 'agent.name');
-
+/*
 manager.addDocument('en', "you're bad", 'agent.insult');
 manager.addDocument('en', "you're horrible", 'agent.insult');
 manager.addDocument('en', "you're useless", 'agent.insult');
 manager.addDocument('en', "you are the worst", 'agent.insult');
-manager.addDocument('en', 'I hate you', 'agent.insult')
+*/
+manager.addDocument('en', 'I hate you', 'agent.insult');
+manager.addDocument('en', 'I hate you so much', 'agent.insult');
+
+manager.addDocument('en', 'are you stupid', 'agent.insultStupid');
+manager.addDocument('en', 'you are so stupid', 'agent.insultStupid');
+manager.addDocument('en', 'noob', 'agent.insultStupid');
+manager.addDocument('en', 'i am clever', 'agent.insultStupid');
 
 manager.addDocument('en', 'who is your master', 'agent.creator');
 manager.addDocument('en', 'who do you work for', 'agent.creator');
 manager.addDocument('en', 'who is your creator', 'agent.creator');
 manager.addDocument('en', 'who is your owner', 'agent.creator');
 manager.addDocument('en', 'who is the creator', 'agent.creator');
+
+manager.addDocument('en', 'help', 'command.help');
+manager.addDocument('en', 'help me', 'command.help');
+manager.addDocument('en', 'can you help me', 'command.help');
+manager.addDocument('en', 'i need some help', 'command.help');
+manager.addDocument('en', 'please help me', 'command.help');
+
+manager.addDocument('en', 'what accident', 'nanachi.accident');
+manager.addDocument('en', 'tell me more about the accident', 'nanachi.accident');
+manager.addDocument('en', 'what happened during the accident', 'nanachi.accident');
+manager.addDocument('en', 'how did nanachi die', 'nanachi.accident');
+manager.addDocument('en', 'how did she die', 'nanachi.accident');
 // Train also the NLG
-manager.addAnswer('en', 'agent.name', '');
-manager.addAnswer('en', 'agent.insult', '');
-manager.addAnswer('en', 'agent.creator', '');
- 
-// Train and save the model.
-(async() => {
-    await manager.train();
-    manager.save();
-    const response = await manager.process('en', 'I have to go');
-    console.log(response);
-})();
+manager.addAnswer('en', 'agent.name', 'I am the true Nanachi! The fake died in an accident.');
+
+manager.addAnswer('en', 'agent.insult', "I don't lke you neither");
+manager.addAnswer('en', 'agent.insult', "Wait a second... ps -aux... Ho, I got it... kill -9 user... Are you still here? Crap!");
+
+manager.addDocument('en', 'agent.insultStupid', "https://en.wikipedia.org/wiki/Dunning%E2%80%93Kruger_effect");
+
+manager.addAnswer('en', 'agent.creator', "Why are you asking me this? I don't care about him. And I don't care about you neither.");
+
+manager.addAnswer('en', 'agent.help', "Well, I can (but I won't)");
+manager.addAnswer('en', 'agent.help', "Why should I do that?");
+manager.addAnswer('en', 'agent.help', "Here is a friend of yours: https://www.google.com/");
+manager.addAnswer('en', 'agent.help', "Click on the red cross at the top left of your screen");
+manager.addAnswer('en', 'nanachi.accident', "She slipped in the abyss and has not returned yet. I told everyone that she died, but nobody believed me. Do you know what is worst? I am currently speaking to you...");
 
 
 
@@ -66,7 +88,14 @@ async function getResponse(userInput) {
         console.log(wikiPage);
         return wikiPage;
     }
-    return userInput;
+    else {
+        response = await manager.process('en', userInput);
+        if (response.answer) {
+            return response.answer;
+        } else {
+            return "I didn't undertand."
+        }
+    }
 }
 
 
@@ -101,4 +130,14 @@ const server = http.createServer((req, res) => {
       res.end(mainPage);
     }
 });
-server.listen(3000);
+
+// Train and save the model.
+(async() => {
+    await manager.train();
+    manager.save();
+    //const response = await manager.process('en', 'I have to go');
+    //console.log(response);
+})().then(() => {
+    console.log("I am ready");
+    server.listen(3000);
+});
