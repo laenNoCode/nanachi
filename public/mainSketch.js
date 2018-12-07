@@ -35,6 +35,7 @@ var snakeSkin;
 var tornadoSkin;
 var backgroundSkin;
 
+var name = "__________"
 
 window.setup = function() {
     var heroSkin = {
@@ -63,7 +64,7 @@ window.setup = function() {
         "night": [loadImage("/ressources/night/Background.png")]
     }
 
-    scaleX = min(windowWidth / baseWidth, windowHeight / baseHeight);
+    scaleX = 0.95 * min(windowWidth / baseWidth, windowHeight / baseHeight);
     scaleY = scaleX;
     createCanvas(baseWidth * scaleX, baseHeight * scaleY);
     background(0);
@@ -94,7 +95,8 @@ window.draw = function() {
             //255,235,150
             fill(255, 235, 150, 20);
             textSize(32);
-            text(" Score : " + floor(score), baseWidth / 4, baseHeight / 4);
+            text(" Score : " + floor(score), baseWidth * scaleX * 3 / 8, baseHeight * scaleY / 4);
+            text(name, baseWidth * scaleX * 3 / 8, baseHeight * scaleY / 4 + 50);
 
         }
     }
@@ -102,9 +104,10 @@ window.draw = function() {
 }
 
 window.windowResized = function() {
-    scaleX = min(windowWidth / baseWidth, windowHeight / baseHeight);
+    scaleX = 0.95 * min(windowWidth / baseWidth, windowHeight / baseHeight);
     scaleY = scaleX;
     resizeCanvas(baseWidth * scaleX, baseHeight * scaleY);
+    background(0);
 }
 
 window.update = function() {
@@ -133,8 +136,6 @@ window.update = function() {
 
     }
 }
-
-
 
 
 
@@ -171,8 +172,27 @@ window.handleReleased = function() {
 
 }
 
+function sendScore(score, name) {
+    fetch("/addScore", {
+        method: "POST",
+        body: name + " " + score
+    });
+}
+
+
 window.keyPressed = function() {
     handlePressed();
+    if (!hero.alive) {
+        if (key == "Enter") {
+            sendScore(score, name);
+        } else {
+            console.log(key.length);
+            if (key.length == 1 && name.indexOf("_") != -1) {
+                console.log(key);
+                name = name.replace("_", key);
+            }
+        }
+    }
 }
 window.keyReleased = function() {
     handleReleased();

@@ -1,10 +1,10 @@
 const fs = require('fs');
 const http = require('http');
 const https = require('https');
-const privateKey  = fs.readFileSync('/etc/letsencrypt/live/nanachi.mine.bz/privkey.pem', 'utf8');
-const certificate = fs.readFileSync('/etc/letsencrypt/live/nanachi.mine.bz/fullchain.pem',  'utf8');
+const privateKey = fs.readFileSync('/etc/letsencrypt/live/nanachi.mine.bz/privkey.pem', 'utf8');
+const certificate = fs.readFileSync('/etc/letsencrypt/live/nanachi.mine.bz/fullchain.pem', 'utf8');
 
-const credentials = {key: privateKey, cert: certificate};
+const credentials = { key: privateKey, cert: certificate };
 const express = require('express');
 const app = express();
 const basePort = 0;
@@ -25,7 +25,9 @@ const static_options = {
 };
 app.use(express.static('public', static_options));
 
-// app.get('/', (req, res) => {});
+app.get('/addScore', (req, res) => {
+
+});
 
 
 //// v Boilerplate v
