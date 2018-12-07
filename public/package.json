@@ -1,22 +1,17 @@
 {
-  "name": "Nanachi-www",
+  "name": "Nanachi-server",
   "version": "0.0.1",
-  "description": "Nanachi website project files for the NuitDeLInfo 2018",
+  "description": "Nanachi website server project for the NuitDeLInfo 2018",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode=production",
-    "dev": "webpack-dev-server --mode=development"
+    "serve": "node index.js"
   },
   "keywords": [
-    "webpack",
-    "webpack-dev-server"
   ],
   "license": "AGPL-3.0",
   "dependencies": {
-    "webpack": "^4.22.0",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.9"
+    "express": "^4.16.4"
   },
   "devDependencies": {}
 }

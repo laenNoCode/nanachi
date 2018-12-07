@@ -14,11 +14,15 @@ export default class {
         this.alive = true;
     }
 
-    draw(frame, scaleX = 1.0, scaleY = 1.0) {
+    draw(frame, scaleX = 1.0, scaleY = 1.0, date = 'day') {
         if (this.skin === null) {
             fill(0, 0, 255);
             noStroke();
             rect(this.x * scaleX, this.y * scaleY, this.width * scaleX, this.height * scaleY);
+        } else {
+
+            var skin = this.skin[date];
+            image(this.skin[date][floor(frame / 30) % this.skin[date].length], this.x * scaleX, this.y * scaleY, this.width * scaleX, this.height * scaleY);
         }
     }
     update(baseHeight, groundHeight, skyHeight, speed = 1.0, frame) {
