@@ -1,6 +1,8 @@
 import Vipi from './vipi.js';
 import BasicEnemy from './basicEnemy.js';
 
+var day = "ressources/day/";
+var night = "ressources/night/";
 var hero;
 var enemies;
 var baseWidth = 480;
@@ -21,14 +23,26 @@ const MIN_FRAME_GEN_WAIT = 50;
 const MAX_FRAME_GEN_WAIT = 250;
 var framesBeforeSpawn = 1;
 
+var cactusSkin;
+var vautourSkin;
+
+
 
 window.setup = function() {
+
+    var heroSkin = {
+        "day": [loadImage(day + 'vipi1.png'), loadImage(day + 'vipi2.png')],
+        "night": [loadImage(night + 'vipi1.png'), loadImage(night + 'vipi2.png')]
+    };
+    vautourSkin = {
+        "day": [loadImage(day + 'vautour.png')],
+        "night": [loadImage(night + 'vautour.png')]
+    };
     scaleX = 1.0;
     scaleY = 1.0;
-
     createCanvas(baseWidth * scaleX, baseHeight * scaleY);
     frameRate(30);
-    hero = new Vipi(30, 50, 0, 0.13, 0.9, 0.99, 1, 32, 32);
+    hero = new Vipi(30, 50, 0, 0.13, 0.9, 0.99, 1, 32, 32, heroSkin);
     enemies = [];
 }
 
@@ -100,7 +114,7 @@ window.generateEnemy = function() {
             var endHeight = random() * baseHeight;
             var distance = sqrt((endHeight - skyHeight) * (endHeight - skyHeight) + (baseWidth) * (baseWidth));
 
-            enemies.push(new BasicEnemy(baseWidth, skyHeight, -basicSpeed * 2 * baseWidth / distance, (endHeight - skyHeight) / distance, 37, 24));
+            enemies.push(new BasicEnemy(baseWidth, skyHeight, -basicSpeed * 2 * baseWidth / distance, (endHeight - skyHeight) / distance, 37, 24, vautourSkin));
             break;
     }
     framesBeforeSpawn = floor(random() * (MAX_FRAME_GEN_WAIT - MIN_FRAME_GEN_WAIT)) + MIN_FRAME_GEN_WAIT;

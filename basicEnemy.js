@@ -15,10 +15,14 @@ export default class {
         this.checkHitBox(vipi);
     }
 
-    draw(frame, scaleX = 1.0, scaleY = 1.0) {
+    draw(frame, scaleX = 1.0, scaleY = 1.0, date = 'day') {
         if (this.skin === null) {
             fill(255, 0, 0);
             rect(this.x * scaleX, this.y * scaleY, this.width * scaleX, this.height * scaleY);
+        } else {
+
+            var skin = this.skin[date];
+            image(this.skin[date][floor(frame / 30) % this.skin[date].length], this.x * scaleX, this.y * scaleY, this.width * scaleX, this.height * scaleY);
         }
     }
 
