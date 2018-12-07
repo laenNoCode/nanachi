@@ -27,8 +27,8 @@ export default class {
     }
 
     checkHitBox(vipi) {
-        if (((this.x < vipi.x + vipi.width) && (this.x > vipi.x)) || ((this.x + this.width < vipi.x + vipi.width) && (this.x + this.width > vipi.x))) {
-            if (((this.y < vipi.y + vipi.height) && (this.y > vipi.y)) || ((this.y + this.height < vipi.y + vipi.height) && (this.y + this.height > vipi.y))) {
+        if (((this.x <= vipi.x + vipi.width) && (this.x >= vipi.x)) || ((this.x + this.width <= vipi.x + vipi.width) && (this.x + this.width >= vipi.x))) {
+            if (((this.y <= vipi.y + vipi.height) && (this.y >= vipi.y)) || ((this.y + this.height <= vipi.y + vipi.height) && (this.y + this.height >= vipi.y))) {
                 vipi.die();
             }
         }

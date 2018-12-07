@@ -1,8 +1,8 @@
 import Vipi from './vipi.js';
 import BasicEnemy from './basicEnemy.js';
 
-var day = "ressources/day/";
-var night = "ressources/night/";
+var day = "/ressources/day/";
+var night = "/ressources/night/";
 var hero;
 var enemies;
 var baseWidth = 480;
@@ -19,18 +19,24 @@ const ENEMY_TYPES = {
     SNAKE: 2,
     VULTURE: 3,
 }
+
+var backgroundWidth = 5000;
+var xBackground = 0;
+
+
 const MIN_FRAME_GEN_WAIT = 50;
-const MAX_FRAME_GEN_WAIT = 250;
+const MAX_FRAME_GEN_WAIT = 250; //250
 var framesBeforeSpawn = 1;
 
+var dates = ["day", "night"];
 var cactusSkin;
 var vautourSkin;
 var snakeSkin;
-
+var tornadoSkin;
+var backgroundSkin;
 
 
 window.setup = function() {
-
     var heroSkin = {
         "day": [loadImage(day + 'vipi1.png'), loadImage(day + 'vipi2.png')],
         "night": [loadImage(night + 'vipi1.png'), loadImage(night + 'vipi2.png')]
@@ -48,11 +54,19 @@ window.setup = function() {
         "day": [loadImage(day + 'snake3.png')],
         "night": [loadImage(night + 'snake3.png')]
     };
+    tornadoSkin = {
+        "day": [loadImage(day + 'tornade.png')],
+        "night": [loadImage(night + 'tornade.png')]
+    };
+    backgroundSkin = {
+        "day": [loadImage("/ressources/day/Background.png")],
+        "night": [loadImage("/ressources/night/Background.png")]
+    }
 
-
-    scaleX = 1.0;
-    scaleY = 1.0;
+    scaleX = min(windowWidth / baseWidth, windowHeight / baseHeight);
+    scaleY = scaleX;
     createCanvas(baseWidth * scaleX, baseHeight * scaleY);
+    background(0);
     frameRate(30);
     hero = new Vipi(30, 50, 0, 0.13, 0.9, 0.99, 1, 32, 32, heroSkin);
     enemies = [];
@@ -62,11 +76,13 @@ window.draw = function() {
     if (hero.alive) {
         window.update();
         background(255, 100, 200);
-        hero.draw(frameCount, scaleX, scaleY);
+        image(backgroundSkin[dates[floor(frameCount / 750) % 2]][0], 0, 0, baseWidth * scaleX, baseHeight * scaleY, xBackground, 0, baseWidth, baseHeight);
+        image(backgroundSkin[dates[floor(frameCount / 750) % 2]][0], 0, 0, baseWidth * scaleX, baseHeight * scaleY, xBackground - 5000, 0, baseWidth, baseHeight);
+        hero.draw(frameCount, scaleX, scaleY, dates[floor(frameCount / 750) % 2]);
         fill(255);
         text(floor(score), 1 * scaleX, (baseHeight) * scaleY - 1);
         for (var v of enemies) {
-            v.draw(frameCount, scaleX, scaleY);
+            v.draw(frameCount, scaleX, scaleY, dates[floor(frameCount / 750) % 2]);
         }
     } else {
         if (frameCount - hero.frame < 20) {
@@ -84,9 +100,20 @@ window.draw = function() {
     }
 
 }
+
+window.windowResized = function() {
+    scaleX = min(windowWidth / baseWidth, windowHeight / baseHeight);
+    scaleY = scaleX;
+    resizeCanvas(baseWidth * scaleX, baseHeight * scaleY);
+}
+
 window.update = function() {
     if (hero.alive) {
-        var currentSpeed = 1 + pow(frameCount / 60.0, 0.75)
+        var currentSpeed = 1 + pow(frameCount / 60.0, 0.75);
+        xBackground += currentSpeed * 0.5;
+        if (xBackground > 6000) {
+            xBackground -= backgroundWidth;
+        }
         score += currentSpeed / 30.0;
         hero.update(baseHeight, groundHeight, skyHeight, currentSpeed, frameCount);
         for (var v = enemies.length - 1; v >= 0; v--) {
@@ -108,6 +135,10 @@ window.update = function() {
 }
 
 
+
+
+
+
 window.generateEnemy = function() {
     var enemyType = floor(Math.random() * 4);
     switch (enemyType) {
@@ -120,7 +151,7 @@ window.generateEnemy = function() {
 
             break;
         case (ENEMY_TYPES.TORNADO):
-            enemies.push(new BasicEnemy(baseWidth, skyHeight + random() * (baseHeight), -basicSpeed, 0, 48, 64));
+            enemies.push(new BasicEnemy(baseWidth, skyHeight + random() * (baseHeight), -basicSpeed, 0, 48, 64, tornadoSkin));
             break;
         case (ENEMY_TYPES.VULTURE):
             var endHeight = random() * baseHeight;
