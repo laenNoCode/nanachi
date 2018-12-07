@@ -11,16 +11,17 @@ export default class {
         this.height = height;
         this.skin = skin;
         this.pressed = false;
+        this.alive = true;
     }
 
-    draw(scaleX = 1.0, scaleY = 1.0) {
-        if (this.skin == null) {
+    draw(frame, scaleX = 1.0, scaleY = 1.0) {
+        if (this.skin === null) {
             fill(0, 0, 255);
             noStroke();
             rect(this.x * scaleX, this.y * scaleY, this.width * scaleX, this.height * scaleY);
         }
     }
-    update(baseHeight, groundHeight, skyHeight, speed = 1.0) {
+    update(baseHeight, groundHeight, skyHeight, speed = 1.0, frame) {
         this.vy += this.gravity;
         this.vy *= (this.vy > 0) ? this.fDown : this.fUp;
         this.y += this.vy * speed;
@@ -39,6 +40,7 @@ export default class {
                 this.vy = 0;
             }
         }
+        this.frame = frame;
     }
 
     onUpPressed() {
@@ -46,5 +48,9 @@ export default class {
     }
     onUpReleased() {
         this.pressed = false;
+    }
+    die() {
+        this.alive = false;
+        console.log("dead");
     }
 }
