@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node index.js"
+    "serve": "nodejs index.js"
   },
-  "keywords": [
-  ],
+  "keywords": [],
   "license": "AGPL-3.0",
   "dependencies": {
     "express": "^4.16.4"

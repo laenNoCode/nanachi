@@ -1,9 +1,41 @@
-<!doctype html>
-<html>
-  <head>
-    <title>Nanachi</title>
-  </head>
-  <body>
-    <script src="/dist/main.js"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#FF0000">
+    <meta name="Description" content="flappy bird PWA">
+    <link rel="manifest" href="Manifest.json" />
+    <title lang="fr">
+        first PWA app
+    </title>
+</head>
+
+<body>
+    <noscript>
+        <p>
+            votre navigateur ne supporte pas javaScript
+        </p>
+    </noscript>
+    <p id="loading">
+        loading ...
+    </p>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register("/sw.js").then(
+                function(registration) {
+                    console.log("sw's registration was successfull. Scope:" +
+                        registration.scope)
+                },
+                function(err) {
+                    console.log("something went wrong. Error: " + err)
+                }
+            );
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.js">
+    </script>
+    <script src="/sketch.js "></script>
+</body>
+
 </html>
